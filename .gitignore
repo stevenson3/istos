@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment
+.env
+.env.*
+
+# Data (raw source files and processed intermediates)
+data/raw/
+data/processed/
+
+# IDE
+.vscode/
+.idea/
+
+# Node / Next.js
+node_modules/
+frontend/.next/
+frontend/out/
+
+# Alembic
+alembic/versions/*.pyc
+.claude/

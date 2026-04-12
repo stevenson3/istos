@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "istos-backend"
+version = "0.1.0"
+description = "Istos: Bible-as-Graph backend"
+requires-python = ">=3.11"
+dependencies = [
+    # Web
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.29",
+    # DB / ORM
+    "sqlalchemy>=2.0",
+    "alembic>=1.13",
+    "psycopg[binary]>=3.1",
+    "pgvector>=0.3",
+    # Validation
+    "pydantic>=2.7",
+    "pydantic-settings>=2.2",
+    # ETL utilities
+    "httpx>=0.27",          # downloads
+    "lxml>=5.2",            # OSIS XML parsing
+    "tqdm>=4.66",           # progress bars
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+    "httpx",               # test client
+    "ruff>=0.4",
+]
+embeddings = [
+    "sentence-transformers>=2.7",
+    "torch>=2.3",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
