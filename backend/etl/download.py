@@ -34,13 +34,13 @@ SOURCES: list[tuple[str, str, str]] = [
     ),
     (
         "openbible",
-        "https://a.openbible.info/bulk/cross-references.zip",
+        "https://a.openbible.info/data/cross-references.zip",
         "cross-references.zip",
     ),
     (
         "delitzsch",
-        "https://github.com/openscriptures/HebrewNT/archive/refs/heads/master.zip",
-        "HebrewNT-master.zip",
+        "https://github.com/HebrewNewTestament/HebDelitzsch/archive/refs/heads/master.zip",
+        "HebDelitzsch-master.zip",
     ),
 ]
 

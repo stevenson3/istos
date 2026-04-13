@@ -32,7 +32,7 @@ class Edge(Base):
     weight: Mapped[float] = mapped_column(Float, default=1.0, nullable=False)  # 0.0–1.0
     is_directed: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     # Flexible metadata: {"source": "openbible", "score": 0.87, "model": "LaBSE", ...}
-    metadata: Mapped[dict | None] = mapped_column(JSON)
+    edge_metadata: Mapped[dict | None] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )

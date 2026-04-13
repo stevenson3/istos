@@ -149,7 +149,7 @@ def upgrade() -> None:
         ),
         sa.Column("weight", sa.Float, default=1.0, nullable=False),
         sa.Column("is_directed", sa.Boolean, default=False, nullable=False),
-        sa.Column("metadata", sa.JSON),
+        sa.Column("edge_metadata", sa.JSON),
         sa.Column(
             "created_at",
             sa.DateTime(timezone=True),

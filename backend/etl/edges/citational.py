@@ -42,7 +42,7 @@ def load_citational_edges(db: Session, batch_size: int = 2000) -> int:
                 edge_type=EdgeType.CITATIONAL,
                 weight=raw["weight"],
                 is_directed=True,
-                metadata=raw["metadata"],
+                edge_metadata=raw["metadata"],
             )
         )
         if len(batch) >= batch_size:

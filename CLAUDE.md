@@ -2,6 +2,8 @@
 
 Istos is a Bible-as-graph application. Each verse is a node; edges capture citational, topical, linguistic, authorial, and semantic relationships. Stack: FastAPI + SQLAlchemy 2.0 + PostgreSQL 16 + pgvector. ETL pipeline in `backend/etl/`.
 
+Whenever you perform a code change, assess whether you should make an accompanying documentation change.
+
 ## Docs index
 
 | Doc | What it covers |

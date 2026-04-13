@@ -7,7 +7,7 @@ We emit VerseText dicts with:
   is_virtual=True
   translation_name="Delitzsch"
 
-Input:  data/raw/HebrewNT-master.zip
+Input:  data/raw/HebDelitzsch-master.zip
 """
 
 import zipfile
@@ -15,9 +15,9 @@ from pathlib import Path
 from typing import Generator
 
 RAW = Path(__file__).parent.parent.parent.parent / "data" / "raw"
-HNT_ZIP = RAW / "HebrewNT-master.zip"
+HNT_ZIP = RAW / "HebDelitzsch-master.zip"
 
-SOURCE_URL = "https://github.com/openscriptures/HebrewNT"
+SOURCE_URL = "https://github.com/HebrewNewTestament/HebDelitzsch"
 
 # MorphGNT NT book → OSIS mapping (re-used here)
 NT_BOOKS = [
@@ -41,14 +41,15 @@ def iter_verse_texts() -> Generator[dict, None, None]:
         raise FileNotFoundError(f"Delitzsch HNT zip not found: {HNT_ZIP}. Run etl.download first.")
 
     with zipfile.ZipFile(HNT_ZIP) as zf:
-        # Try text files first
-        txt_files = [n for n in zf.namelist() if n.endswith(".txt") and "HebrewNT" in n]
-        xml_files = [n for n in zf.namelist() if n.endswith(".xml") and "HebrewNT" in n]
+        names = zf.namelist()
+        # New repo layout: HebDelitzsch-master/base.osis
+        xml_files = [n for n in names if n.endswith(".osis") or (n.endswith(".xml") and "HebrewNT" in n)]
+        txt_files = [n for n in names if n.endswith(".txt") and "HebrewNT" in n]
 
-        if txt_files:
-            yield from _parse_txt(zf, txt_files)
-        elif xml_files:
+        if xml_files:
             yield from _parse_xml(zf, xml_files)
+        elif txt_files:
+            yield from _parse_txt(zf, txt_files)
 
 
 def _parse_txt(zf: zipfile.ZipFile, names: list[str]) -> Generator[dict, None, None]:
